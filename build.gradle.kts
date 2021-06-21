@@ -32,4 +32,8 @@ tasks {
 	withType<JavaCompile> {
 		options.encoding = "UTF-8"
 	}
+
+	withType<Test> {
+		useJUnitPlatform()
+	}
 }
