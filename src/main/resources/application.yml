@@ -4,17 +4,17 @@ spring:
       ddl-auto: none
     show-sql: true
   datasource:
-    url: jdbc:mariadb://ip:3306/db-name
-    username: admin
-    password: pass
+    url: jdbc:mariadb://${DDB_DATABASE_URL}:3306/${DDB_DATABASE_NAME}
+    username: ${DDB_DATABASE_USER}
+    password: ${DDB_DATABASE_PASSWORD}
     driver-class-name: org.mariadb.jdbc.Driver
   security:
     oauth2:
       client:
         registration:
           discord:
-            clientId: client id
-            clientSecret: client secret
+            clientId: ${DDB_CLIENT_ID}
+            clientSecret: ${DDB_CLIENT_SECRET}
             authorizationGrantType: authorization_code
             redirectUri: "{baseUrl}/login/oauth2/code/discord"
             scope: identify
