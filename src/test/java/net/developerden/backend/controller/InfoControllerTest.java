@@ -1,31 +1,29 @@
 package net.developerden.backend.controller;
 
 import org.junit.jupiter.api.Test;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
-import org.springframework.boot.test.web.client.TestRestTemplate;
-import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.web.servlet.MockMvc;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @ActiveProfiles("test")
-@SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
+@WebMvcTest
 public class InfoControllerTest {
 
-    @LocalServerPort
-    private int port;
-
     @Autowired
-    private TestRestTemplate restTemplate;
-
-    private String baseUrl = "http://localhost:" + port;
+    private MockMvc mockMvc;
 
     @Test
-    public void ping_happyDay_returnsPong() {
-        String response = this.restTemplate.getForObject(baseUrl + "/ping", String.class);
-        assertThat(response).isEqualTo("pong");
+    public void ping_happyDay_returnsPong() throws Exception {
+        this.mockMvc.perform(get("/ping"))
+                .andExpect(status().isOk())
+                .andExpect(content().string("pong"));
+
     }
 }
