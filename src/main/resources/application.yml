@@ -1,0 +1,18 @@
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: true
+  datasource:
+    url: jdbc:mariadb://<INPUT SERVER IP HERE>:3306/devden
+    username: username
+    password: password
+    driver-class-name: org.mariadb.jdbc.Driver
+  security:
+    oauth2:
+      client:
+        registration:
+          discord:
+            clientId: 821844511159222312
+            clientSecret: secret
+
