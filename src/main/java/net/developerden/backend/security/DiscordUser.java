@@ -1,6 +1,7 @@
 package net.developerden.backend.security;
 
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.oauth2.core.OAuth2AccessToken;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 
 import java.util.Collection;
@@ -11,7 +12,9 @@ import java.util.Map;
 /**
  * Java representation of all of the data that Discord gives us from the /users/@me API endpoint.
  */
-public record DiscordUser(String id, String username, String discriminator, String locale) implements OAuth2User {
+public record DiscordUser(String id, String username, String discriminator,
+                          String locale,
+                          OAuth2AccessToken token) implements OAuth2User {
     public String fullName() {
         return username + "#" + discriminator;
     }

@@ -27,11 +27,9 @@ public class DiscordUserService implements OAuth2UserService<OAuth2UserRequest, 
 
         final var entity = new HttpEntity<>(headers);
 
-        final var user = new RestTemplate()
-                .exchange(DISCORD_USERINFO_URI, HttpMethod.GET,
-                        entity, DiscordUser.class)
+        var user = new RestTemplate()
+                .exchange(DISCORD_USERINFO_URI, HttpMethod.GET, entity, DiscordUser.class)
                 .getBody();
-
-        return user;
+        return new DiscordUser(user.id(), user.username(), user.discriminator(), user.locale(), userRequest.getAccessToken());
     }
 }
