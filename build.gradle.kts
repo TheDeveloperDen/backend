@@ -17,7 +17,7 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-security")
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.mariadb.jdbc:mariadb-java-client:3.0.5")
-    implementation("com.h2database:h2:2.1.212")
+    implementation("com.h2database:h2:2.5.250")
 
     developmentOnly("org.springframework.boot:spring-boot-devtools")
 
